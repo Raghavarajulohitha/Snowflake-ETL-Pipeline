@@ -1,0 +1,38 @@
+1. Requirements Gathering
+The requirements gathering phase is crucial for understanding the project scope, data sources, and business needs.
+
+A. Identify Stakeholders
+Business Users: Understand their needs for reporting and analysis.
+Data Engineers: Identify technical requirements for data extraction and loading.
+Data Analysts: Gather requirements for data transformations and insights needed.
+IT Security: Ensure compliance with data security and governance policies.
+
+B. Define Business Objectives
+Key Goals: What insights are needed? For example, improving sales performance, understanding customer behavior, or optimizing inventory management.
+KPIs: Identify key performance indicators to measure success, such as total sales, customer retention rate, and average order value.
+
+C. Data Source Identification
+Transactional Data:
+    Oracle Database: Identify tables related to sales, customers, and products.
+External Data:
+    CSV Files: Determine additional data sources for marketing campaigns, product catalogs, and customer feedback.
+    APIs: Check for any external APIs that may provide relevant data.
+
+D. Data Requirements
+Data Volume: Estimate the size of data that will be processed.
+Data Quality: Assess the quality of data in the Oracle Database and external sources. Identify potential issues such as duplicates or missing values.
+Data Frequency: Determine how often data needs to be extracted and loaded (e.g., real-time, daily, weekly).
+
+E. Transformation Requirements
+Data Cleaning: Define rules for cleaning the data (e.g., removing duplicates, standardizing formats).
+Data Enrichment: Identify necessary enrichments (e.g., calculating customer lifetime value, segmenting customers).
+Aggregations: Specify required aggregations (e.g., total sales per month, average sales per product).
+
+F. Reporting Requirements
+Visualization Tools: Confirm that Tableau will be used for reporting and dashboarding.
+Dashboard Features: Gather requirements for key features in dashboards (e.g., filters, drill-down capabilities, visual types).
+G. Compliance and Security
+Data Governance: Ensure alignment with data governance policies.
+Security Requirements: Identify data access controls and encryption requirements for sensitive data.
+H. Documentation
+Requirements Document: Compile all gathered information into a formal requirements document for approval by stakeholders.
