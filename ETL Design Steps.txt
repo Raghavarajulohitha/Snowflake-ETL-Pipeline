@@ -1,0 +1,53 @@
+A. Data Extraction
+
+Source Systems:
+
+Oracle (Transactional Data)
+CSV Files (Product, Marketing, and Campaign Data)
+
+Extraction Tools:
+Informatica IICS for extracting data from Oracle.
+File ingestion from external CSV files using IICS and Snowpipe for automatic ingestion into Snowflake.
+
+Steps:
+
+Define the connection between Oracle and Informatica IICS.
+Create Informatica mappings to extract the required tables (e.g., Orders, Customers, Products).
+Set up Snowpipe for automatic CSV file ingestion into Snowflake.
+
+B. Data Transformation
+
+Transformation Tools:
+Informatica IICS for data cleaning, filtering, deduplication, and transformations.
+SQL scripts for further manipulation within Snowflake.
+
+Transformation Steps:
+
+Data Cleaning:
+Remove duplicates, format date columns, and normalize customer names.
+
+Data Enrichment:
+Join customer and order data to create enriched datasets (e.g., customer lifetime value, order history).
+
+Aggregation:
+Create aggregate tables (e.g., monthly sales performance, customer segmentation).
+
+Key Transformations:
+
+Sales KPIs: Compute key metrics like total revenue, average order value, and customer lifetime value (CLV).
+Customer Segmentation: Classify customers based on purchasing behavior (e.g., repeat buyers, one-time purchasers).
+
+C: Data Loading
+
+Target Warehouse: Snowflake on AWS.
+
+Loading Tools:
+
+Informatica IICS for loading structured and transformed data into Snowflake tables.
+Snowpipe for automatic and continuous data loading of external CSV files.
+
+Steps:
+
+Load raw and transformed data from Oracle into Snowflake staging tables using Informatica.
+Define staging and production schemas in Snowflake.
+Create jobs to move data from staging to the final tables in Snowflake.
