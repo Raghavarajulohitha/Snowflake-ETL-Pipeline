@@ -46,14 +46,20 @@ Data Pipeline
 **Data Pipeline Overview**
 
 Data Extraction: Extract raw sales and customer data from Oracle and external CSV files.
+
 Data Transformation: Clean, format, and enrich the data using SQL and Informatica IICS.
+
 Data Loading: Load the transformed data into Snowflake using Snowpipe.
+
 Visualization: Create interactive Poweer BI dashboards connected to Snowflake for real-time analytics.
 
 **ETL Process**
 
 Data Extraction: E-commerce sales and customer data is extracted from a Oracle database and supplementary CSV files.
+
 Data Cleaning & Transformation: SQL scripts and Informatica IICS workflows are used for cleaning, transforming, and aggregating the data to meet business requirements.
+
 Data Integration: Cleaned and transformed data is integrated into Snowflake via Informatica IICS, leveraging Snowpipe for continuous loading.
+
 Visualization: Snowflake data is connected to Power BI to create insightful dashboards on sales trends, customer segmentation, and performance metrics.
 
