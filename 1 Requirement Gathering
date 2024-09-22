@@ -31,8 +31,10 @@ Aggregations: Specify required aggregations (e.g., total sales per month, averag
 F. Reporting Requirements
 Visualization Tools: Confirm that Tableau will be used for reporting and dashboarding.
 Dashboard Features: Gather requirements for key features in dashboards (e.g., filters, drill-down capabilities, visual types).
+
 G. Compliance and Security
 Data Governance: Ensure alignment with data governance policies.
 Security Requirements: Identify data access controls and encryption requirements for sensitive data.
+
 H. Documentation
 Requirements Document: Compile all gathered information into a formal requirements document for approval by stakeholders.
