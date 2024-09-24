@@ -1,0 +1,113 @@
+ETL Design Overview with Informatica
+
+1. Source Definition
+Source System:
+Input File: Excel/CSV file containing invoice data with the following columns:
+InvoiceNo
+StockCode
+Description
+Quantity
+InvoiceDate
+UnitPrice
+CustomerID
+Country
+
+2. Target Definition
+Target Database:
+Database Table: Invoice_Facts
+InvoiceNo (VARCHAR)
+StockCode (VARCHAR)
+Description (VARCHAR)
+Quantity (INT)
+InvoiceDate (DATE)
+UnitPrice (DECIMAL)
+CustomerID (VARCHAR)
+Country (VARCHAR)
+TotalPrice (DECIMAL)
+
+
+3. Transformation Logic
+Transformations:
+Data Type Conversion:
+Convert InvoiceDate to a DATE format (e.g., YYYY-MM-DD).
+Ensure numeric fields like Quantity and UnitPrice are in the correct data types (e.g., INT and DECIMAL).
+
+Calculated Fields:
+Create a new field TotalPrice calculated as:
+sql
+Copy code
+TotalPrice = Quantity * UnitPrice
+
+Data Cleaning:
+Remove any records with null or invalid InvoiceNo.
+Validate that Quantity is greater than 0.
+
+Deduplication:
+Implement logic to handle duplicate records based on InvoiceNo and StockCode.
+
+Data Enrichment (if applicable):
+Join with another dimension table (e.g., Customer_Dimension) if you have customer-related information.
+
+4. ETL Process Flowchart
+Here’s a flowchart representing the ETL process:
+
+
++-----------------+
+|  Source: Excel/ |
+|     CSV File    |
++-----------------+
+         |
+         v
++-----------------+
+|    Staging      |
+|   Area (Landing)|
++-----------------+
+         |
+         v
++-----------------+
+|  Data Cleaning  |
+|  & Validation   |
++-----------------+
+         |
+         v
++-----------------+
+| Transformation   |
+|  (Calculations)  |
++-----------------+
+         |
+         v
++-----------------+
+|    Target       |
+|  Invoice_Facts  |
++-----------------+
+
+5. Repository Structure
+Here’s an example of how you might structure your Informatica repository for this project:
+
+Invoice_ETL_Project
+│   README.md
+│
+└── Mapping
+    ├── Invoice_Data_Mapping.xml
+    ├── Workflow_Invoicing.xml
+    └── Session_Invoicing.xml
+
+6. How to Run
+To execute this ETL process, follow these steps:
+
+Setup Source and Target:
+Configure the Excel/CSV file as a source in Informatica.
+Define the target database connection for Invoice_Facts.
+
+Develop Mappings:
+Create a new mapping in Informatica for transforming the invoice data.
+Add the source definition and implement transformations as defined.
+
+Create Workflows:
+Set up a workflow that includes the mapping and session tasks to load the data into the target table.
+
+Run the Workflow:
+Execute the workflow in Informatica to load and transform the data.
+
+Conclusion:
+This design outlines the ETL process using Informatica PowerCenter for processing invoice data. The design includes source and target definitions, transformation logic, and a flowchart representation of the ETL process. By following this design, you can effectively extract, transform, and load invoice data into your data warehouse.
