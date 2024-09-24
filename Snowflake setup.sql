@@ -20,52 +20,52 @@ CREATE SCHEMA e_commerce_db.production_schema --'Schema for production data read
 4. Create Tables in the Raw Schema
 sql
 CREATE TABLE e_commerce_db.raw_schema.raw_invoices (
-    InvoiceNo VARCHAR(50) COMMENT 'Unique identifier for each invoice.',
-    StockCode VARCHAR(50) COMMENT 'Unique identifier for each stock item.',
-    Description VARCHAR(255) COMMENT 'Description of the product.',
-    Quantity INT COMMENT 'Quantity of items sold in the invoice.',
-    InvoiceDate DATE COMMENT 'Date when the invoice was generated.',
-    UnitPrice DECIMAL(10, 2) COMMENT 'Price per unit of the item sold.',
-    CustomerID VARCHAR(50) COMMENT 'Identifier for the customer making the purchase.',
-    Country VARCHAR(50) COMMENT 'Country of the customer.'
+    InvoiceNo VARCHAR(50) -- 'Unique identifier for each invoice.',
+    StockCode VARCHAR(50) -- 'Unique identifier for each stock item.',
+    Description VARCHAR(255) -- 'Description of the product.',
+    Quantity INT -- 'Quantity of items sold in the invoice.',
+    InvoiceDate DATE -- 'Date when the invoice was generated.',
+    UnitPrice DECIMAL(10, 2) -- 'Price per unit of the item sold.',
+    CustomerID VARCHAR(50) -- 'Identifier for the customer making the purchase.',
+    Country VARCHAR(50) -- 'Country of the customer.'
 );
 
 5. Create Tables in the Staging Schema
 sql
 CREATE TABLE e_commerce_db.staging_schema.staging_invoices (
-    InvoiceNo VARCHAR(50) COMMENT 'Unique identifier for each invoice.',
-    StockCode VARCHAR(50) COMMENT 'Unique identifier for each stock item.',
-    Quantity INT COMMENT 'Quantity of items sold in the invoice.',
-    InvoiceDate DATE COMMENT 'Date when the invoice was generated.',
-    UnitPrice DECIMAL(10, 2) COMMENT 'Price per unit of the item sold.',
-    CustomerID VARCHAR(50) COMMENT 'Identifier for the customer making the purchase.',
-    Country VARCHAR(50) COMMENT 'Country of the customer.',
-    ProcessedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT 'Date when the data was processed in staging.'
+    InvoiceNo VARCHAR(50) -- 'Unique identifier for each invoice.',
+    StockCode VARCHAR(50) -- 'Unique identifier for each stock item.',
+    Quantity INT -- 'Quantity of items sold in the invoice.',
+    InvoiceDate DATE -- 'Date when the invoice was generated.',
+    UnitPrice DECIMAL(10, 2) -- 'Price per unit of the item sold.',
+    CustomerID VARCHAR(50) -- 'Identifier for the customer making the purchase.',
+    Country VARCHAR(50) -- 'Country of the customer.',
+    ProcessedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- 'Date when the data was processed in staging.'
 );
 
 6. Create Tables in the Production Schema
 sql
 CREATE TABLE e_commerce_db.production_schema.invoice_facts (
-    InvoiceNo VARCHAR(50) COMMENT 'Unique identifier for each invoice.',
-    StockCode VARCHAR(50) COMMENT 'Unique identifier for each stock item.',
-    Quantity INT COMMENT 'Quantity of items sold in the invoice.',
-    InvoiceDate DATE COMMENT 'Date when the invoice was generated.',
-    UnitPrice DECIMAL(10, 2) COMMENT 'Price per unit of the item sold.',
-    CustomerID VARCHAR(50) COMMENT 'Identifier for the customer making the purchase.',
-    TotalAmount DECIMAL(10, 2) COMMENT 'Total amount for the invoice (Quantity * UnitPrice).',
-    PRIMARY KEY (InvoiceNo) COMMENT 'Primary key for the invoice facts table.'
+    InvoiceNo VARCHAR(50) -- 'Unique identifier for each invoice.',
+    StockCode VARCHAR(50) -- 'Unique identifier for each stock item.',
+    Quantity INT -- 'Quantity of items sold in the invoice.',
+    InvoiceDate DATE -- 'Date when the invoice was generated.',
+    UnitPrice DECIMAL(10, 2) -- 'Price per unit of the item sold.',
+    CustomerID VARCHAR(50) -- 'Identifier for the customer making the purchase.',
+    TotalAmount DECIMAL(10, 2) -- 'Total amount for the invoice (Quantity * UnitPrice).',
+    PRIMARY KEY (InvoiceNo) -- 'Primary key for the invoice facts table.'
 );
 
 CREATE TABLE e_commerce_db.production_schema.product_dimension (
-    StockCode VARCHAR(50) COMMENT 'Unique identifier for each stock item.',
-    Description VARCHAR(255) COMMENT 'Description of the product.',
-    PRIMARY KEY (StockCode) COMMENT 'Primary key for the product dimension table.'
+    StockCode VARCHAR(50) -- 'Unique identifier for each stock item.',
+    Description VARCHAR(255) -- 'Description of the product.',
+    PRIMARY KEY (StockCode) -- 'Primary key for the product dimension table.'
 );
 
 CREATE TABLE e_commerce_db.production_schema.customer_dimension (
-    CustomerID VARCHAR(50) COMMENT 'Unique identifier for each customer.',
-    Country VARCHAR(50) COMMENT 'Country of the customer.',
-    PRIMARY KEY (CustomerID) COMMENT 'Primary key for the customer dimension table.'
+    CustomerID VARCHAR(50) -- 'Unique identifier for each customer.',
+    Country VARCHAR(50) -- 'Country of the customer.',
+    PRIMARY KEY (CustomerID) -- 'Primary key for the customer dimension table.'
 );
 
 
