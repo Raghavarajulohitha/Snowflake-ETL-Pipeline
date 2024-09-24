@@ -63,3 +63,6 @@ Data Integration: Cleaned and transformed data is integrated into Snowflake via 
 
 Visualization: Snowflake data is connected to Power BI to create insightful dashboards on sales trends, customer segmentation, and performance metrics.
 
+
+<img width="460" alt="image" src="https://github.com/user-attachments/assets/c678a90e-203a-48a5-8610-4bbaa3389e95">
+
