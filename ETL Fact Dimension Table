@@ -1,0 +1,113 @@
+A. Dimension Tables
+Dimension tables contain descriptive attributes related to the facts and are typically used for filtering, grouping, and labeling in queries.
+
+*Customer Dimension Table
+
+Purpose: Contains details about the customers.
+Table Definition:
+
+CREATE OR REPLACE TABLE e_commerce_db.dimensions.customer_dimension (
+    customer_id STRING PRIMARY KEY, -- Unique identifier for each customer
+    customer_name STRING, -- Name of the customer
+    country STRING, -- Country where the customer resides
+    email STRING, -- Customer's email address
+    phone STRING, -- Customer's phone number
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Timestamp when the customer record was created
+)
+COMMENT = 'Dimension table containing customer information'; -- Comment for the table
+
+
+*Product Dimension Table
+Purpose: Contains details about the products being sold.
+Table Definition:
+CREATE OR REPLACE TABLE e_commerce_db.dimensions.product_dimension (
+    stock_code STRING PRIMARY KEY, -- Unique code for the product
+    description STRING, -- Description of the product
+    category STRING, -- Product category
+    unit_price FLOAT, -- Price per unit
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Timestamp when the product record was created
+)
+COMMENT = 'Dimension table containing product information'; -- Comment for the table
+
+
+*Time Dimension Table
+Purpose: Contains various time attributes for analyzing trends over time.
+Table Definition:
+CREATE OR REPLACE TABLE e_commerce_db.dimensions.time_dimension (
+    time_id STRING PRIMARY KEY, -- Unique identifier for the time
+    date DATE, -- Date
+    month INT, -- Month
+    quarter INT, -- Quarter
+    year INT, -- Year
+    day_of_week STRING, -- Day of the week
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Timestamp when the time record was created
+)
+COMMENT = 'Dimension table containing time attributes'; -- Comment for the table
+
+
+Fact Table
+Fact tables contain quantitative data (metrics) that are often analyzed and aggregated. They typically include foreign keys referencing dimension tables.
+
+Sales Fact Table
+Purpose: Contains sales transaction data.
+Table Definition:
+CREATE OR REPLACE TABLE e_commerce_db.facts.sales_fact (
+    invoice_no STRING, -- Invoice number
+    stock_code STRING, -- Stock code from product dimension
+    customer_id STRING, -- Customer ID from customer dimension
+    time_id STRING, -- Time ID from time dimension
+    quantity INT, -- Quantity sold
+    unit_price FLOAT, -- Price per unit
+    total_amount FLOAT, -- Total amount (calculated as quantity * unit_price)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp when the record was created
+    PRIMARY KEY (invoice_no, stock_code, customer_id, time_id), -- Composite primary key
+    FOREIGN KEY (stock_code) REFERENCES e_commerce_db.dimensions.product_dimension(stock_code), -- Reference to product dimension
+    FOREIGN KEY (customer_id) REFERENCES e_commerce_db.dimensions.customer_dimension(customer_id), -- Reference to customer dimension
+    FOREIGN KEY (time_id) REFERENCES e_commerce_db.dimensions.time_dimension(time_id) -- Reference to time dimension
+)
+COMMENT = 'Fact table containing sales transaction data'; -- Comment for the table
+
+
+Summary of Relationships
+Customer Dimension: Linked to the sales fact table through customer_id.
+Product Dimension: Linked to the sales fact table through stock_code.
+Time Dimension: Linked to the sales fact table through time_id.
+
+ETL Process
+
+Extract:
+Load data from CSV files (invoices) into raw tables.
+
+Transform:
+Clean and normalize the data, create surrogate keys for dimensions.
+Aggregate sales data as needed.
+
+Load:
+Load transformed data into dimension tables (customers, products, time).
+Load transactional data into the sales fact table.
+
+
+Diagram Representation
+Here’s a simplified view of the relationships in a star schema:
+
+
+                +------------------------+
+                |  Customer Dimension    |
+                +------------------------+
+                        |
+                        |      +-------------------+
+                        |      |   Time Dimension   |
+                        |      +-------------------+
+                        |                |
+                        |                |
++-----------------------+-----------------------+---------------------+
+|                     Sales Fact Table                              |
++---------------------------------------------------------------+
+|   Invoice No   |   Stock Code   |   Customer ID  |   Time ID   |
+|   Quantity      |   Unit Price   |   Total Amount  |   ...      |
++---------------------------------------------------------------+
+                        |
+                        |
+                +---------------------+
+                |  Product Dimension   |
+                +---------------------+
